@@ -87,7 +87,7 @@ class _GroceryListState extends State<GroceryList> {
     setState(() {
       _groceryItems.remove(item);
     });
-    final url = Uri.https('hopping-list-b4200-default-rtdb.firebaseio.com',
+    final url = Uri.https('shopping-list-b4200-default-rtdb.firebaseio.com',
         'shopping/${item.id}.json');
 
     final response = await http.delete(url);
