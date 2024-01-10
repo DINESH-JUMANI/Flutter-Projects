@@ -17,72 +17,95 @@ class LoginScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Card(
-              shape: Border.all(),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const Icon(
-                    Icons.person,
-                    size: 30,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: _titleController,
-                      decoration: const InputDecoration(
-                        label: Text(
-                          'Email',
-                          style: TextStyle(
-                            fontSize: 20,
+      body: SafeArea(
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              Card(
+                shape: Border.all(),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const Icon(
+                      Icons.person,
+                      size: 30,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        controller: _titleController,
+                        decoration: const InputDecoration(
+                          label: Text(
+                            'Email',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Card(
-              shape: Border.all(),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.lock,
-                    size: 30,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: _passwordController,
-                      decoration: const InputDecoration(
-                        label: Text(
-                          'Password',
-                          style: TextStyle(fontSize: 20),
+              const SizedBox(height: 10),
+              Card(
+                shape: Border.all(),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.lock,
+                      size: 28,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        controller: _passwordController,
+                        decoration: const InputDecoration(
+                          label: Text(
+                            'Password',
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Log in'),
-            ),
-            const SizedBox(height: 5),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('New to Application? Register Here'),
-            ),
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {},
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black),
+                ),
+                child: const Text(
+                  'Log in',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5),
+              ElevatedButton(
+                onPressed: () {},
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black),
+                ),
+                child: const Text(
+                  'New to Application? Register Here',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
