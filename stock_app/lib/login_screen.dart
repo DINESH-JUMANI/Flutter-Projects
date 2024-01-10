@@ -27,7 +27,13 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 10),
               Card(
-                shape: Border.all(),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  side: const BorderSide(
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -40,6 +46,7 @@ class LoginScreen extends StatelessWidget {
                       child: TextField(
                         controller: _titleController,
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           label: Text(
                             'Email',
                             style: TextStyle(
@@ -54,7 +61,13 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Card(
-                shape: Border.all(),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  side: const BorderSide(
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
+                ),
                 child: Row(
                   children: [
                     const Icon(
@@ -66,6 +79,7 @@ class LoginScreen extends StatelessWidget {
                       child: TextField(
                         controller: _passwordController,
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           label: Text(
                             'Password',
                             style: TextStyle(fontSize: 20),
