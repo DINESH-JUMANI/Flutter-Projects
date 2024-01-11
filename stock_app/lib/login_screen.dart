@@ -8,6 +8,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final _emailController = TextEditingController();
     final _passwordController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -38,13 +39,16 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const SizedBox(width: 10),
                     const Icon(
-                      Icons.person,
+                      Icons.email,
                       size: 30,
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
                         controller: _emailController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Email',
@@ -74,6 +78,10 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                        obscureText: true,
                         controller: _passwordController,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -104,7 +112,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 5),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (ctx) => const RegistrationScreen(),
                     ),

@@ -40,13 +40,16 @@ class RegistrationScreen extends StatelessWidget {
                   children: [
                     const SizedBox(width: 10),
                     const Icon(
-                      Icons.person,
+                      Icons.email,
                       size: 30,
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
                         controller: _emailController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Email',
@@ -77,6 +80,10 @@ class RegistrationScreen extends StatelessWidget {
                     Expanded(
                       child: TextField(
                         controller: _passwordController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                        obscureText: true,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Password',
@@ -107,6 +114,9 @@ class RegistrationScreen extends StatelessWidget {
                     Expanded(
                       child: TextField(
                         controller: _nameController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Name',
@@ -137,6 +147,9 @@ class RegistrationScreen extends StatelessWidget {
                     Expanded(
                       child: TextField(
                         controller: _phoneController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Phone',
@@ -144,6 +157,7 @@ class RegistrationScreen extends StatelessWidget {
                             fontSize: 20,
                           ),
                         ),
+                        keyboardType: TextInputType.phone,
                       ),
                     ),
                   ],
@@ -166,8 +180,7 @@ class RegistrationScreen extends StatelessWidget {
               const SizedBox(height: 5),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (ctx) => const LoginScreen(),
                     ),
