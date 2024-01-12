@@ -20,6 +20,18 @@ class _LoginScreenState extends State<LoginScreen> {
   void _submit() async {
     final isValid = _formKey.currentState!.validate();
     if (!isValid) return;
+    try {
+      final userCredentials = await _firebase.signInWithEmailAndPassword(
+          email: _enteredEmail, password: _enteredPassword);
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'email-already-in-use') {}
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.message ?? 'Authentication failed.'),
+        ),
+      );
+    }
   }
 
   @override

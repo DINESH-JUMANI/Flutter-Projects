@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -17,8 +18,19 @@ class ProfileScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
       ),
-      body: const Center(
-        child: Text('Profile'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text('Profile'),
+            ElevatedButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              child: const Text('Log Out'),
+            ),
+          ],
+        ),
       ),
     );
   }
