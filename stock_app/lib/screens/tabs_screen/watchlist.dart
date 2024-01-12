@@ -5,6 +5,27 @@ class WatchlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget content = Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'lib/assets/logo.png',
+            width: 200,
+            height: 180,
+            color: Colors.black87,
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Add Stocks in Watchlist!',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -17,9 +38,7 @@ class WatchlistScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.black,
       ),
-      body: const Center(
-        child: Text('Watchlist'),
-      ),
+      body: content,
     );
   }
 }
