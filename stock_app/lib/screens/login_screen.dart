@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:stock_app/screens/registration_screen.dart';
 import 'package:stock_app/screens/tabs.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  final _checkKey = GlobalKey();
+  var _enteredEmail = '';
+  var _enteredPassword = '';
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -37,6 +43,7 @@ class LoginScreen extends StatelessWidget {
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(8)),
                   child: Row(
+                    key: _checkKey,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       const SizedBox(width: 10),
@@ -46,8 +53,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: TextField(
-                          controller: _emailController,
+                        child: TextFormField(
                           style: const TextStyle(
                             fontSize: 20,
                           ),
@@ -58,6 +64,20 @@ class LoginScreen extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          textCapitalization: TextCapitalization.none,
+                          validator: (value) {
+                            if (value == null ||
+                                value.trim().isEmpty ||
+                                !value.contains('@')) {
+                              return 'Please enter a valid email address';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _enteredEmail = value!;
+                          },
                         ),
                       ),
                     ],
@@ -79,12 +99,11 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: TextField(
+                        child: TextFormField(
                           style: const TextStyle(
                             fontSize: 20,
                           ),
                           obscureText: true,
-                          controller: _passwordController,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Password',
@@ -92,6 +111,15 @@ class LoginScreen extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
+                          validator: (value) {
+                            if (value == null || value.trim().length < 6) {
+                              return 'Password must be 6 characters long.';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _enteredPassword = value!;
+                          },
                         ),
                       ),
                     ],
