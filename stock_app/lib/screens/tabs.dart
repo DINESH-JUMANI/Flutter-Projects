@@ -30,9 +30,6 @@ class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello'),
-      ),
       body: screens[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,

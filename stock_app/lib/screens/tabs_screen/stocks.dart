@@ -5,8 +5,21 @@ class StocksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Stocks Screen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            'Stocks',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.black,
+      ),
+      body: const Center(
+        child: Text('Stocks'),
+      ),
     );
   }
 }

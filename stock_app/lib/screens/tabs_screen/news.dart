@@ -5,8 +5,21 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('News Screen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            'News',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.black,
+      ),
+      body: const Center(
+        child: Text('News'),
+      ),
     );
   }
 }
