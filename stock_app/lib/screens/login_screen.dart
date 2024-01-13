@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+
 import 'package:stock_app/screens/registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -10,7 +11,9 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginScreen> createState() {
+    return _LoginScreenState();
+  }
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -20,9 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _submit() async {
     final isValid = _formKey.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
+    if (!isValid) return;
+
     _formKey.currentState!.save();
     try {
       final userCredentials = await _firebase.signInWithEmailAndPassword(

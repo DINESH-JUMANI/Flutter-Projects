@@ -10,7 +10,7 @@ class LoadingScreen extends StatelessWidget {
         title: const Text('Login'),
       ),
       body: const Center(
-        child: Text('Loading...'),
+        child: CircularProgressIndicator(),
       ),
     );
   }

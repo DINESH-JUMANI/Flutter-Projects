@@ -22,8 +22,9 @@ void main() async {
           }
           if (snapshot.hasData) {
             return const Tabs();
+          } else {
+            return const LoginScreen();
           }
-          return const LoginScreen();
         },
       ),
     ),

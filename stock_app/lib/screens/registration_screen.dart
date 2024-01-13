@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,6 +29,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     try {
       final userCredentials = await _firebase.createUserWithEmailAndPassword(
           email: _enteredEmail, password: _enteredPassword);
+
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(userCredentials.user!.uid)
+          .set({
+        'username': _enteredName,
+        'phone_number': _enteredPhoneNumber,
+        'email': _enteredEmail,
+      });
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {}
       ScaffoldMessenger.of(context).clearSnackBars();
