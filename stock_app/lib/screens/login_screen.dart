@@ -1,6 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:stock_app/screens/registration_screen.dart';
-import 'package:stock_app/screens/tabs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final _firebase = FirebaseAuth.instance;
@@ -19,7 +20,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _submit() async {
     final isValid = _formKey.currentState!.validate();
-    if (!isValid) return;
+    if (!isValid) {
+      return;
+    }
+    _formKey.currentState!.save();
     try {
       final userCredentials = await _firebase.signInWithEmailAndPassword(
           email: _enteredEmail, password: _enteredPassword);
@@ -47,13 +51,13 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.black,
       ),
       body: SafeArea(
-        child: Form(
-          key: _formKey,
-          child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: Colors.white,
-            child: SingleChildScrollView(
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.white,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -148,13 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (ctx) => const Tabs(),
-                        ),
-                      );
-                    },
+                    onPressed: _submit,
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.black),
                     ),
