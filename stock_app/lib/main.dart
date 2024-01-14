@@ -20,6 +20,7 @@ void main() async {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingScreen();
           }
+
           if (snapshot.hasData) {
             return const Tabs();
           } else {

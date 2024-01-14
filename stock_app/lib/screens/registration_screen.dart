@@ -39,7 +39,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         'email': _enteredEmail,
       });
     } on FirebaseAuthException catch (error) {
-      if (error.code == 'email-already-in-use') {}
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -259,13 +258,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 const SizedBox(height: 5),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (ctx) => const LoginScreen(),
-                      ),
-                    );
-                  },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.black),
                   ),
@@ -276,6 +268,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       fontSize: 18,
                     ),
                   ),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (ctx) => const LoginScreen(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

@@ -1,8 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String username = "Profile";
+  Future _getUser() async {
+    final user = FirebaseAuth.instance.currentUser!;
+
+    final userData =
+        await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
+    username = userData.data()!['username'];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +37,18 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text('Profile'),
+            FutureBuilder(
+              future: _getUser(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState != ConnectionState.done) {
+                  return const CircularProgressIndicator();
+                }
+                return Text(
+                  username,
+                  style: const TextStyle(fontSize: 30),
+                );
+              },
+            ),
             ElevatedButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();

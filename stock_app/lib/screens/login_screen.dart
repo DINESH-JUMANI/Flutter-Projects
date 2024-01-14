@@ -30,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
       final userCredentials = await _firebase.signInWithEmailAndPassword(
           email: _enteredEmail, password: _enteredPassword);
     } on FirebaseAuthException catch (error) {
-      if (error.code == 'email-already-in-use') {}
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -154,10 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: _submit,
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.black),
                     ),
+                    onPressed: _submit,
                     child: const Text(
                       'Log in',
                       style: TextStyle(
@@ -168,6 +167,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 5),
                   ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.black),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
@@ -175,9 +177,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.black),
-                    ),
                     child: const Text(
                       'New to Application? Register Here',
                       style: TextStyle(
