@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:stock_app/screens/registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:stock_app/screens/tabs.dart';
 
 final _firebase = FirebaseAuth.instance;
 
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _formKey.currentState!.save();
     try {
-      final userCredentials = await _firebase.signInWithEmailAndPassword(
+      await _firebase.signInWithEmailAndPassword(
           email: _enteredEmail, password: _enteredPassword);
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context).clearSnackBars();
@@ -36,7 +37,20 @@ class _LoginScreenState extends State<LoginScreen> {
           content: Text(error.message ?? 'Authentication failed.'),
         ),
       );
+      return;
     }
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Logged in'),
+      ),
+    );
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (ctx) => const Tabs(),
+      ),
+    );
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:stock_app/screens/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -10,6 +11,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  void _logOut() {
+    FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (ctx) => const LoginScreen(),
+      ),
+    );
+  }
+
   String username = "Profile";
   Future _getUser() async {
     final user = FirebaseAuth.instance.currentUser!;
@@ -50,9 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
+              onPressed: _logOut,
               child: const Text('Log Out'),
             ),
           ],

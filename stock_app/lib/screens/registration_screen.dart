@@ -46,6 +46,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       );
     }
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Registered Successfully'),
+      ),
+    );
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (ctx) => const LoginScreen(),
+      ),
+    );
   }
 
   @override
