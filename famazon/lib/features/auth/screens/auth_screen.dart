@@ -1,6 +1,7 @@
 import 'package:famazon/common/widgets/custom_button.dart';
 import 'package:famazon/common/widgets/custom_textfield.dart';
 import 'package:famazon/contsants/global_variables.dart';
+import 'package:famazon/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 enum Auth {
@@ -23,6 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
 
+  final AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordContoller = TextEditingController();
   final TextEditingController _nameContoller = TextEditingController();
@@ -33,6 +35,15 @@ class _AuthScreenState extends State<AuthScreen> {
     _emailController.dispose();
     _passwordContoller.dispose();
     _nameContoller.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordContoller.text,
+      name: _nameContoller.text,
+    );
   }
 
   @override
@@ -98,7 +109,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         const SizedBox(height: 10),
                         CustomButton(
                           text: 'Sign up',
-                          onTap: () {},
+                          onTap: () {
+                            if (_signInFormKey.currentState!.validate()) {
+                              signUpUser();
+                            }
+                          },
                         ),
                       ],
                     ),
