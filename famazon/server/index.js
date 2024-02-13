@@ -11,6 +11,7 @@ const app = express();
 const DB = "mongodb+srv://dottdj:dini123@cluster0.y28gz2s.mongodb.net/?retryWrites=true&w=majority";
 
 // middleware
+app.use(express.json());
 app.use(authRouter);
 
 // Connections
@@ -23,6 +24,6 @@ mongoose.connect(DB)
     });
 
 
-app.listen(PORT, () => {
-    console.log(`connected at port ${PORT} hello`)
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`connected at port ${PORT}`)
 });
