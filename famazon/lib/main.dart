@@ -1,7 +1,7 @@
+import 'package:famazon/common/widgets/bottom_bar.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/features/auth/screens/auth_screen.dart';
 import 'package:famazon/features/auth/services/auth_service.dart';
-import 'package:famazon/features/home/screens/home_screen.dart';
 import 'package:famazon/providers/user_provider.dart';
 import 'package:famazon/router.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => gererateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const HomeScreen()
+          ? const BottomBar()
           : const AuthScreen(),
     );
   }

@@ -2,10 +2,10 @@
 
 import 'dart:convert';
 
+import 'package:famazon/common/widgets/bottom_bar.dart';
 import 'package:famazon/contsants/error_handling.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/contsants/utils.dart';
-import 'package:famazon/features/home/screens/home_screen.dart';
 import 'package:famazon/models/user.dart';
 import 'package:famazon/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +78,7 @@ class AuthService {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
         },

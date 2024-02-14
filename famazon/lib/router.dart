@@ -1,3 +1,4 @@
+import 'package:famazon/common/widgets/bottom_bar.dart';
 import 'package:famazon/features/auth/screens/auth_screen.dart';
 import 'package:famazon/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,11 @@ Route<dynamic> gererateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const HomeScreen(),
+      );
+    case BottomBar.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const BottomBar(),
       );
     default:
       return MaterialPageRoute(
