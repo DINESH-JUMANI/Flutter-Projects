@@ -1,5 +1,6 @@
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/features/home/widgets/address_box.dart';
+import 'package:famazon/features/home/widgets/carousel_image.dart';
 import 'package:famazon/features/home/widgets/top_categories.dart';
 import 'package:flutter/material.dart';
 
@@ -99,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
           AddressBox(),
           SizedBox(height: 10),
           TopCategories(),
+          CarouselImage(),
         ],
       ),
     );
