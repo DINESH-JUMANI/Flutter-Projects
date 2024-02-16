@@ -1,5 +1,6 @@
 import 'package:famazon/common/widgets/bottom_bar.dart';
 import 'package:famazon/contsants/global_variables.dart';
+import 'package:famazon/features/admin/screens/admin_screen.dart';
 import 'package:famazon/features/auth/screens/auth_screen.dart';
 import 'package:famazon/features/auth/services/auth_service.dart';
 import 'package:famazon/providers/user_provider.dart';
@@ -33,6 +34,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'famazon',
       theme: ThemeData(
         useMaterial3: true,
@@ -49,7 +51,9 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => gererateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const BottomBar()
+          ? Provider.of<UserProvider>(context).user.type == 'user'
+              ? const BottomBar()
+              : const AdminScreen()
           : const AuthScreen(),
     );
   }
