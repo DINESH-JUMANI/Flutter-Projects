@@ -5,6 +5,7 @@ import 'package:famazon/common/widgets/custom_button.dart';
 import 'package:famazon/common/widgets/custom_textfield.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/contsants/utils.dart';
+import 'package:famazon/features/admin/services/admin_services.dart';
 import 'package:flutter/material.dart';
 
 class AddProductScreen extends StatefulWidget {
@@ -20,9 +21,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController descriptionContoller = TextEditingController();
   final TextEditingController priceContoller = TextEditingController();
   final TextEditingController quantityContoller = TextEditingController();
+  final AdminServices adminServices = AdminServices();
 
   String category = 'Mobiles';
   List<File> images = [];
+  final _addProductFormKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -40,6 +43,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Books',
     'Fashion'
   ];
+
+  void sellProduct() {
+    if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+      adminServices.sellProduct(
+        context: context,
+        name: productNameContoller.text,
+        description: descriptionContoller.text,
+        price: double.parse(priceContoller.text),
+        quantity: double.parse(quantityContoller.text),
+        category: category,
+        images: images,
+      );
+    }
+  }
 
   void selectImages() async {
     var res = await pickImages();
@@ -71,6 +88,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: _addProductFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -167,7 +185,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                CustomButton(text: 'Sell', onTap: () {})
+                CustomButton(text: 'Sell', onTap: sellProduct)
               ],
             ),
           ),
