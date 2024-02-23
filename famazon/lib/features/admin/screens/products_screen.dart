@@ -1,4 +1,5 @@
 import 'package:famazon/common/widgets/loader.dart';
+import 'package:famazon/contsants/utils.dart';
 import 'package:famazon/features/account/widgets/single_product.dart';
 import 'package:famazon/features/admin/screens/add_product_screen.dart';
 import 'package:famazon/features/admin/services/admin_services.dart';
@@ -34,6 +35,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
       onSuccess: () {
         products!.removeAt(index);
         setState(() {});
+        showSnackBar(context, 'Product Deleted Successfully');
       },
     );
   }
