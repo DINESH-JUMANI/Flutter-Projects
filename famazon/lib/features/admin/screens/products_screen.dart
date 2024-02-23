@@ -27,6 +27,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
     setState(() {});
   }
 
+  void deleteProduct(Product product, int index) {
+    adminServices.deleteProduct(
+      context: context,
+      product: product,
+      onSuccess: () {
+        products!.removeAt(index);
+        setState(() {});
+      },
+    );
+  }
+
   void navigaeToAddproduct() {
     Navigator.pushNamed(context, AddProductScreen.routeName);
   }
@@ -46,7 +57,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 140,
+                      height: 130,
                       child: SingleProduct(
                         image: productData.images[0],
                       ),
@@ -62,7 +73,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () => deleteProduct(productData, index),
                           icon: const Icon(
                             Icons.delete_outline,
                           ),
