@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -49,20 +46,29 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyB5FTyZzsDffq8acHLubblDABghWbmc1cc',
+    appId: '1:692186409368:web:ea107eb11332d978d2a3ed',
+    messagingSenderId: '692186409368',
+    projectId: 'stocks-app-woc',
+    authDomain: 'stocks-app-woc.firebaseapp.com',
+    storageBucket: 'stocks-app-woc.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD5aztUiNp75O70nNmXLDIFoGv-rKNuvnI',
-    appId: '1:71566529385:android:344c55c08baff1b9de63f8',
-    messagingSenderId: '71566529385',
-    projectId: 'stock-app-d8f31',
-    storageBucket: 'stock-app-d8f31.appspot.com',
+    apiKey: 'AIzaSyAkZ1fJPL2XpZ2umn2MIoF6k32yQzxulTE',
+    appId: '1:692186409368:android:95af1bb239001cd8d2a3ed',
+    messagingSenderId: '692186409368',
+    projectId: 'stocks-app-woc',
+    storageBucket: 'stocks-app-woc.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB6Ug_IeHzY2lbtNDVHRtjDLvupzzLauTk',
-    appId: '1:71566529385:ios:48ad255180a524cede63f8',
-    messagingSenderId: '71566529385',
-    projectId: 'stock-app-d8f31',
-    storageBucket: 'stock-app-d8f31.appspot.com',
-    iosBundleId: 'com.example.stockApp',
+    apiKey: 'AIzaSyB10B2-NlgKmE42hvS-lBdT4MzjsskX0F0',
+    appId: '1:692186409368:ios:51a343de45d835d9d2a3ed',
+    messagingSenderId: '692186409368',
+    projectId: 'stocks-app-woc',
+    storageBucket: 'stocks-app-woc.appspot.com',
+    iosBundleId: 'com.example.stocksApp',
   );
 }

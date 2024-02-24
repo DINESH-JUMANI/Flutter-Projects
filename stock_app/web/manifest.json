@@ -1,6 +1,6 @@
 {
-    "name": "stock_app",
-    "short_name": "stock_app",
+    "name": "stocks_app",
+    "short_name": "stocks_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
