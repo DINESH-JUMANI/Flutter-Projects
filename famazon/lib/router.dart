@@ -3,7 +3,9 @@ import 'package:famazon/features/admin/screens/add_product_screen.dart';
 import 'package:famazon/features/auth/screens/auth_screen.dart';
 import 'package:famazon/features/home/screens/category_deals_screen.dart';
 import 'package:famazon/features/home/screens/home_screen.dart';
+import 'package:famazon/features/product_details/screens/product_details_screen.dart';
 import 'package:famazon/features/search/screens/search_screen.dart';
+import 'package:famazon/models/product.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> gererateRoute(RouteSettings routeSettings) {
@@ -42,6 +44,14 @@ Route<dynamic> gererateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => SearchScreen(
           searchQuery: searchQuery,
+        ),
+      );
+    case ProductDetailsScreen.routeName:
+      var product = routeSettings.arguments as Product;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => ProductDetailsScreen(
+          product: product,
         ),
       );
     default:

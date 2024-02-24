@@ -1,6 +1,7 @@
 import 'package:famazon/common/widgets/loader.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/features/home/widgets/address_box.dart';
+import 'package:famazon/features/product_details/screens/product_details_screen.dart';
 import 'package:famazon/features/search/services/search_services.dart';
 import 'package:famazon/features/search/widget/searched_product.dart';
 import 'package:famazon/models/product.dart';
@@ -127,7 +128,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: ListView.builder(
                     itemCount: products!.length,
                     itemBuilder: (context, index) {
-                      return SearchedProduct(product: products![index]);
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ProductDetailsScreen.routeName,
+                            arguments: products![index],
+                          );
+                        },
+                        child: SearchedProduct(
+                          product: products![index],
+                        ),
+                      );
                     },
                   ),
                 )
