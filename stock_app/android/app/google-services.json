@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "692186409368",
-    "project_id": "stocks-app-woc",
-    "storage_bucket": "stocks-app-woc.appspot.com"
+    "project_number": "71566529385",
+    "project_id": "stock-app-d8f31",
+    "storage_bucket": "stock-app-d8f31.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:692186409368:android:95af1bb239001cd8d2a3ed",
+        "mobilesdk_app_id": "1:71566529385:android:344c55c08baff1b9de63f8",
         "android_client_info": {
-          "package_name": "com.example.stocks_app"
+          "package_name": "com.example.stock_app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAkZ1fJPL2XpZ2umn2MIoF6k32yQzxulTE"
+          "current_key": "AIzaSyD5aztUiNp75O70nNmXLDIFoGv-rKNuvnI"
         }
       ],
       "services": {

@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyB10B2-NlgKmE42hvS-lBdT4MzjsskX0F0</string>
+	<string>AIzaSyB6Ug_IeHzY2lbtNDVHRtjDLvupzzLauTk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>692186409368</string>
+	<string>71566529385</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.stocksApp</string>
+	<string>com.example.stockApp</string>
 	<key>PROJECT_ID</key>
-	<string>stocks-app-woc</string>
+	<string>stock-app-d8f31</string>
 	<key>STORAGE_BUCKET</key>
-	<string>stocks-app-woc.appspot.com</string>
+	<string>stock-app-d8f31.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:692186409368:ios:51a343de45d835d9d2a3ed</string>
+	<string>1:71566529385:ios:48ad255180a524cede63f8</string>
 </dict>
 </plist>

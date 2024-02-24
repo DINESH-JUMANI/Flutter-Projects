@@ -1,4 +1,4 @@
-# stocks_app
+# stock_app
 
 A new Flutter project.
 
