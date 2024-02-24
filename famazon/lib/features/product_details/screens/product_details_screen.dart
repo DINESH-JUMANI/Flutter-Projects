@@ -185,7 +185,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: CustomButton(
-                text: 'Add to Wheel',
+                text: 'Add to Cart',
                 onTap: () {},
                 color: const Color.fromRGBO(254, 216, 19, 1),
               ),
