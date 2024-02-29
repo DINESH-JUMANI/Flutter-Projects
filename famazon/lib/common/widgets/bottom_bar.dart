@@ -1,5 +1,6 @@
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/features/account/screens/account_screen.dart';
+import 'package:famazon/features/cart/screens/cart_screen.dart';
 import 'package:famazon/features/home/screens/home_screen.dart';
 import 'package:famazon/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages = [
     const HomeScreen(),
     const AccountScreen(),
-    const Center(child: Text('Cart Page')),
+    const CartScreen(),
   ];
 
   void updatePage(int page) {
