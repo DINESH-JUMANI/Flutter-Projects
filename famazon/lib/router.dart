@@ -1,4 +1,5 @@
 import 'package:famazon/common/widgets/bottom_bar.dart';
+import 'package:famazon/features/address/screens/address_screen.dart';
 import 'package:famazon/features/admin/screens/add_product_screen.dart';
 import 'package:famazon/features/auth/screens/auth_screen.dart';
 import 'package:famazon/features/home/screens/category_deals_screen.dart';
@@ -53,6 +54,11 @@ Route<dynamic> gererateRoute(RouteSettings routeSettings) {
         builder: (_) => ProductDetailsScreen(
           product: product,
         ),
+      );
+    case AddressScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AddressScreen(),
       );
     default:
       return MaterialPageRoute(

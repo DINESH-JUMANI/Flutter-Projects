@@ -1,5 +1,6 @@
 import 'package:famazon/common/widgets/custom_button.dart';
 import 'package:famazon/contsants/global_variables.dart';
+import 'package:famazon/features/admin/screens/add_product_screen.dart';
 import 'package:famazon/features/cart/widgets/cart_product.dart';
 import 'package:famazon/features/cart/widgets/cart_subtotal.dart';
 import 'package:famazon/features/home/widgets/address_box.dart';
@@ -18,6 +19,10 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
+
+  void navigateToAddressScreen() {
+    Navigator.pushNamed(context, AddProductScreen.routeName);
   }
 
   @override
@@ -111,7 +116,7 @@ class _CartScreenState extends State<CartScreen> {
               padding: const EdgeInsets.all(8.0),
               child: CustomButton(
                 text: 'Proceed to Buy (${user.cart.length} items)',
-                onTap: () {},
+                onTap: navigateToAddressScreen,
                 color: Colors.yellow.shade600,
               ),
             ),
