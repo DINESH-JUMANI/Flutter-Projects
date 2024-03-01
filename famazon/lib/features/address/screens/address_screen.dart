@@ -1,6 +1,7 @@
 import 'package:famazon/common/widgets/custom_textfield.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/contsants/utils.dart';
+import 'package:famazon/features/address/services/address_services.dart';
 import 'package:famazon/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
@@ -24,8 +25,8 @@ class _AddressScreenState extends State<AddressScreen> {
   List<PaymentItem> paymentItem = [];
   final Future<PaymentConfiguration> _googlePayConfigFuture =
       PaymentConfiguration.fromAsset('default_google_pay_config.json');
-
   String addressToBeUsed = "";
+  final AddressServices addressServices = AddressServices();
 
   @override
   void initState() {
@@ -48,7 +49,20 @@ class _AddressScreenState extends State<AddressScreen> {
     cityController.dispose();
   }
 
-  void onGooglePayResult(res) {}
+  void onGooglePayResult(res) {
+    if (Provider.of<UserProvider>(context, listen: false)
+        .user
+        .address
+        .isEmpty) {
+      addressServices.saveUserAddress(
+          context: context, address: addressToBeUsed);
+    }
+    addressServices.placeOrder(
+      context: context,
+      address: addressToBeUsed,
+      totalSum: double.parse(widget.totalAmount),
+    );
+  }
 
   void payPressed(String addressFromProvider) {
     addressToBeUsed = "";

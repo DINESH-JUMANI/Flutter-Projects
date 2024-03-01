@@ -1,64 +1,43 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'dart:io';
-import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:famazon/contsants/error_handling.dart';
 import 'package:famazon/contsants/global_variables.dart';
 import 'package:famazon/contsants/utils.dart';
 import 'package:famazon/models/product.dart';
+import 'package:famazon/models/user.dart';
 import 'package:famazon/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-class AdminServices {
-  void sellProduct({
+class AddressServices {
+  void saveUserAddress({
     required BuildContext context,
-    required String name,
-    required String description,
-    required double price,
-    required double quantity,
-    required String category,
-    required List<File> images,
+    required String address,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
-      final cloudinary = CloudinaryPublic('dbuneav22', 'ibqjhmjy');
-      List<String> imageUrls = [];
-
-      for (int i = 0; i < images.length; i++) {
-        CloudinaryResponse res = await cloudinary.uploadFile(
-          CloudinaryFile.fromFile(images[i].path, folder: name),
-        );
-        imageUrls.add(res.secureUrl);
-      }
-
-      Product product = Product(
-        name: name,
-        description: description,
-        quantity: quantity,
-        images: imageUrls,
-        category: category,
-        price: price,
-      );
-
       http.Response res = await http.post(
-        Uri.parse('$uri/admin/add-product'),
+        Uri.parse('$uri/api/save-user-address'),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
         },
-        body: product.toJson(),
+        body: jsonEncode({
+          'address': address,
+        }),
       );
 
       httpErrorHandle(
         response: res,
         context: context,
         onSuccess: () {
-          showSnackBar(context, 'Product added Successfully');
-          Navigator.pop(context);
+          User user = userProvider.user
+              .copyWith(address: jsonDecode(res.body)['address']);
+
+          userProvider.setUserFromModel(user);
         },
       );
     } catch (e) {
@@ -67,36 +46,38 @@ class AdminServices {
   }
 
   // get all the products
-  Future<List<Product>> fetchAllProducts(BuildContext context) async {
+  void placeOrder({
+    required BuildContext context,
+    required String address,
+    required double totalSum,
+  }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    List<Product> productList = [];
+
     try {
-      http.Response res = await http.get(
-        Uri.parse('$uri/admin/get-products'),
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/order'),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
         },
+        body: jsonEncode({
+          'cart': userProvider.user.cart,
+          'address': address,
+          'totalPrice': totalSum,
+        }),
       );
       httpErrorHandle(
         response: res,
         context: context,
         onSuccess: () {
-          for (int i = 0; i < jsonDecode(res.body).length; i++) {
-            productList.add(
-              Product.fromJson(
-                jsonEncode(
-                  jsonDecode(res.body)[i],
-                ),
-              ),
-            );
-          }
+          showSnackBar(context, 'Your order has been placed!');
+          User user = userProvider.user.copyWith(cart: []);
+          userProvider.setUserFromModel(user);
         },
       );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
-    return productList;
   }
 
   void deleteProduct({
