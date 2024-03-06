@@ -1,8 +1,12 @@
+import 'package:famazon/common/widgets/custom_button.dart';
 import 'package:famazon/contsants/global_variables.dart';
+import 'package:famazon/features/admin/services/admin_services.dart';
 import 'package:famazon/features/search/screens/search_screen.dart';
 import 'package:famazon/models/order.dart';
+import 'package:famazon/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final Order order;
@@ -18,6 +22,7 @@ class OrderDetailsScreen extends StatefulWidget {
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   int currentStep = 0;
+  final AdminServices adminServices = AdminServices();
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
@@ -28,8 +33,22 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     currentStep = widget.order.status;
   }
 
+  // !!! ONLY FOR ADMIN
+  void changeOrderStatus(int status) {
+    adminServices.changeOrderStatus(
+        context: context,
+        status: status + 1,
+        order: widget.order,
+        onSuccess: () {
+          setState(() {
+            currentStep += 1;
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -137,7 +156,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       DateTime.fromMillisecondsSinceEpoch(
                           widget.order.orderedAt),
                     )}'),
-                    Text('Order ID: \t\t\t\t${widget.order.id}'),
+                    Text('Order ID: \t\t\t\t\t\t\t\t\t${widget.order.id}'),
                     Text('Order Total: \t\t\t\t₹${widget.order.totalPrice}'),
                   ],
                 ),
@@ -206,6 +225,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 child: Stepper(
                   currentStep: currentStep,
                   controlsBuilder: (context, details) {
+                    if (user.type == 'admin') {
+                      return CustomButton(
+                          text: 'Done',
+                          onTap: () => changeOrderStatus(details.currentStep));
+                    }
                     return const SizedBox();
                   },
                   steps: [

@@ -102,7 +102,6 @@ userRouter.post('/api/order', auth, async (req, res) => {
         order = await order.save();
         res.json(order);
 
-        res.json(user);
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
