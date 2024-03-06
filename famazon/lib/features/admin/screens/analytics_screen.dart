@@ -1,6 +1,7 @@
 import 'package:famazon/common/widgets/loader.dart';
 import 'package:famazon/features/admin/models/sales.dart';
 import 'package:famazon/features/admin/services/admin_services.dart';
+import 'package:famazon/features/admin/widgets/category_products_chart.dart';
 import 'package:flutter/material.dart';
 
 class AnalyticsScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const CategoryProductsChart(),
             ],
           );
   }

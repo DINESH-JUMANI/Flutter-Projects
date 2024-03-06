@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 
 import 'package:famazon/common/widgets/bottom_bar.dart';

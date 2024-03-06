@@ -1,14 +1,10 @@
+import 'package:famazon/features/account/services/account_services.dart';
 import 'package:famazon/features/account/widgets/account_button.dart';
 import 'package:flutter/material.dart';
 
-class TopButtons extends StatefulWidget {
+class TopButtons extends StatelessWidget {
   const TopButtons({Key? key}) : super(key: key);
 
-  @override
-  State<TopButtons> createState() => _TopButtonsState();
-}
-
-class _TopButtonsState extends State<TopButtons> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,7 +26,7 @@ class _TopButtonsState extends State<TopButtons> {
           children: [
             AccountButton(
               text: 'Log Out',
-              onPressed: () {},
+              onPressed: () => AccountServices().logOut(context),
             ),
             AccountButton(
               text: 'Your Wish List',
