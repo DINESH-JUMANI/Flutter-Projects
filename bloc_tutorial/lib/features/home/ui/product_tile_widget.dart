@@ -1,9 +1,12 @@
+import 'package:bloc_tutorial/features/home/bloc/home_bloc.dart';
 import 'package:bloc_tutorial/features/home/models/home_product_data_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
-  const ProductTileWidget({super.key, required this.productDataModel});
+  final HomeBloc homeBloc;
+  const ProductTileWidget(
+      {super.key, required this.productDataModel, required this.homeBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +53,23 @@ class ProductTileWidget extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      homeBloc.add(
+                        HomeProductWishlistButtonClickedEvent(
+                          clickedProduct: productDataModel,
+                        ),
+                      );
+                    },
                     icon: const Icon(Icons.favorite_border),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      homeBloc.add(
+                        HomeProductCartButtonClickedEvent(
+                          clickedProduct: productDataModel,
+                        ),
+                      );
+                    },
                     icon: const Icon(Icons.shopping_cart_outlined),
                   ),
                 ],

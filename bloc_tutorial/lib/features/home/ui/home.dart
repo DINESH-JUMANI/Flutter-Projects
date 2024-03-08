@@ -43,6 +43,20 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (ctx) => const WishlistScreen(),
             ),
           );
+        } else if (state is HomeProductItemWishlistedActionState) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Item Wishlisted'),
+            ),
+          );
+        } else if (state is HomeProductItemCartedActionState) {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Item added to Cart'),
+            ),
+          );
         }
       },
       builder: (context, state) {
@@ -57,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
             final successState = state as HomeLoadedSuccessState;
             return Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.teal,
+                backgroundColor: Colors.teal.shade300,
                 title: const Text('Grocery App'),
                 actions: [
                   IconButton(
@@ -82,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: successState.products.length,
                 itemBuilder: (context, index) {
                   return ProductTileWidget(
+                      homeBloc: homeBloc,
                       productDataModel: successState.products[index]);
                 },
               ),
