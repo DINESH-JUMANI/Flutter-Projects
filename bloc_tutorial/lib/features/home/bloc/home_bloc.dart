@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -8,21 +7,11 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
-    on<HomeEvent>((event, emit) {
-      on<HomeProductWishlistButtonClickedEvent>(
-          homeProductWishlistButtonClickedEvent);
-    });
-    on<HomeEvent>((event, emit) {
-      on<HomeProductCartButtonClickedEvent>(homeProductCartButtonClickedEvent);
-    });
-    on<HomeEvent>((event, emit) {
-      on<HomeWishlistButtonNavigateClickedEvent>(
-          homeWishlistButtonNavigateClickedEvent);
-    });
-    on<HomeEvent>((event, emit) {
-      on<HomeCartButtonNavigateClickedEvent>(
-          homeCartButtonNavigateClickedEvent);
-    });
+    on<HomeProductWishlistButtonClickedEvent>(
+        homeProductWishlistButtonClickedEvent);
+    on<HomeProductCartButtonClickedEvent>(homeProductCartButtonClickedEvent);
+    on<HomeWishlistButtonNavigateEvent>(homeWishlistButtonNavigateEvent);
+    on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
   }
 
   FutureOr<void> homeProductWishlistButtonClickedEvent(
@@ -31,13 +20,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeProductCartButtonClickedEvent(
       HomeProductCartButtonClickedEvent event, Emitter<HomeState> emit) {}
 
-  FutureOr<void> homeWishlistButtonNavigateClickedEvent(
-      HomeWishlistButtonNavigateClickedEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> homeWishlistButtonNavigateEvent(
+      HomeWishlistButtonNavigateEvent event, Emitter<HomeState> emit) {
     emit(HomeNavigateToWishlistPageActionState());
   }
 
-  FutureOr<void> homeCartButtonNavigateClickedEvent(
-      HomeCartButtonNavigateClickedEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> homeCartButtonNavigateEvent(
+      HomeCartButtonNavigateEvent event, Emitter<HomeState> emit) {
     emit(HomeNavigateToCartPageActionState());
   }
 }

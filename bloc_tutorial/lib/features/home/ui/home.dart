@@ -27,8 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (ctx) => const CartScreen(),
             ),
           );
-        }
-        if (state is HomeNavigateToWishlistPageActionState) {
+        } else if (state is HomeNavigateToWishlistPageActionState) {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -40,12 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.teal,
             title: const Text('Grocery App'),
             actions: [
               IconButton(
                 onPressed: () {
                   homeBloc.add(
-                    HomeWishlistButtonNavigateClickedEvent(),
+                    HomeWishlistButtonNavigateEvent(),
                   );
                 },
                 icon: const Icon(Icons.favorite_border),
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
               IconButton(
                 onPressed: () {
                   homeBloc.add(
-                    HomeCartButtonNavigateClickedEvent(),
+                    HomeCartButtonNavigateEvent(),
                   );
                 },
                 icon: const Icon(Icons.shopping_cart_outlined),
