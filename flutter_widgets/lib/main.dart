@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/screens/websocket.dart';
 import 'package:flutter_widgets/screens/whatsapp_chatbot.dart';
 import 'package:flutter_widgets/screens/whatsapp_message.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const WhatsappChatbot(),
+      home: const WebSocketScreen(),
     );
   }
 }

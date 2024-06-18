@@ -39,6 +39,7 @@ dependencies:
   country_code_picker: ^3.0.0
   whatsapp_chatbot: ^1.0.0
   whatsapp: ^2.0.0
+  web_socket_channel: ^2.4.3
   
 
 dev_dependencies:

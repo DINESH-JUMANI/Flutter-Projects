@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:whatsapp_chatbot/whatsapp_chatbot.dart';
 
 class WhatsappChatbot extends StatefulWidget {
@@ -10,7 +11,7 @@ class WhatsappChatbot extends StatefulWidget {
 
 class _WhatsappChatbotState extends State<WhatsappChatbot> {
   final settings = Config(
-    botDelay: 3,
+    botDelay: 0,
     waitText: 'Bot Thinking...',
     defaultResponseMessage: "Sorry! I didn't catch that!\nPlease try again!",
     keywords: [
@@ -48,8 +49,9 @@ class _WhatsappChatbotState extends State<WhatsappChatbot> {
       ),
       body: Center(
         child: Stack(
+          alignment: Alignment.center,
           children: [
-            WhatsappChatBot(settings: settings),
+            Center(child: WhatsappChatBot(settings: settings)),
           ],
         ),
       ),
